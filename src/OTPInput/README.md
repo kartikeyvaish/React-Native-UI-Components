@@ -3,6 +3,8 @@
 ## Basic Usage
 
 ```javascript
+import OTPInput from "../components/OTPInput";
+
 const [OTP, SetOTP] = useState("");
 // Maintain a state variable
 
@@ -12,7 +14,7 @@ const [OTP, SetOTP] = useState("");
   value={OTP}
   ...
 
-  />
+/>
 ```
 
 ![OTP Input Demo GIF](https://i.imgur.com/ZKOv0Pa.gif)
