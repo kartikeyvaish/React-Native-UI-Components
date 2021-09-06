@@ -1,8 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import OTP_Input_Screen from "../src/OTP Input/screen/OTP_Input_Screen";
 import HomeScreen from "../src/Home/HomeScreen";
+import OTP_Input_Screen from "../src/OTPInput/screen/OTP_Input_Screen";
 
 const Stack = createNativeStackNavigator();
 
