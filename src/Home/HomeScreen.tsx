@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import ComponentsList from "../../config/ComponentsList";
 
+import ComponentsList from "../../config/ComponentsList";
 import HomeMenuCard from "./HomeMenuCard";
 
 type Props = {
@@ -15,7 +15,7 @@ function HomeScreen({ navigation }: Props) {
         <HomeMenuCard
           {...item}
           key={item._id}
-          onPress={() => navigation.navigate("OTP_Input_Screen")}
+          onPress={() => navigation.navigate(item.component)}
         />
       ))}
     </View>
