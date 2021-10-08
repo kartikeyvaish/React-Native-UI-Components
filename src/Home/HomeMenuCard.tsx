@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
   Text,
   GestureResponderEvent,
-} from "react-native";
+} from 'react-native';
 
 type Props = {
   navigation?: any;
@@ -18,9 +18,8 @@ function HomeMenuCard({ _id, onPress = () => {}, name }: Props) {
     <TouchableOpacity
       key={_id}
       onPress={onPress}
-      style={styles.HomeMenuCardStyle}
-    >
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>{name}</Text>
+      style={styles.HomeMenuCardStyle}>
+      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{name}</Text>
     </TouchableOpacity>
   );
 }
@@ -29,11 +28,12 @@ export default HomeMenuCard;
 
 const styles = StyleSheet.create({
   HomeMenuCardStyle: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 15,
     elevation: 5,
     borderWidth: 1,
-    borderColor: "lightgrey",
+    borderColor: 'lightgrey',
     borderRadius: 10,
+    marginBottom: 10,
   },
 });

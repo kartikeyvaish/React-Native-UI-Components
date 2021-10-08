@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   Dimensions,
   NativeSyntheticEvent,
@@ -9,8 +9,9 @@ import {
   TextStyle,
   View,
   ViewStyle,
+  AppState,
 } from "react-native";
-import * as Clipboard from "expo-clipboard";
+import Clipboard from "@react-native-community/clipboard";
 
 const ScreenWidth = Dimensions.get("screen").width;
 
@@ -57,19 +58,31 @@ function OTPInput({
   onChangeText = (text: string) => {},
 }: Props) {
   const TextInputRefs = useRef(new Array(length).fill({}));
-  const [Focused, SetFocused] = React.useState(0);
+  const [Focused, SetFocused] = useState(0);
+  const appState = useRef(AppState.currentState);
 
-  // UseEffect to clipboard listener
-  React.useEffect(() => {
-    const subscription = Clipboard.addClipboardListener(CheckClipBoard);
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === "active"
+      ) {
+        CheckClipBoard();
+      }
 
-    return () => Clipboard.removeClipboardListener(subscription);
+      appState.current = nextAppState;
+    });
+
+    return () => {
+      subscription.remove();
+    };
   }, []);
 
   // Function to check clipboard OTP
   const CheckClipBoard = async () => {
     try {
-      const text = await Clipboard.getStringAsync();
+      const text = await Clipboard.getString();
+      console.log(text);
       let result = /^[0-9\b]+$/.test(text);
       if (result) {
         if (text.length === length) {
