@@ -1,7 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import ComponentsList from "../../config/ComponentsList";
+import Container from "../../global/components/Container";
 import HomeMenuCard from "./HomeMenuCard";
 
 type Props = {
@@ -10,7 +11,7 @@ type Props = {
 
 function HomeScreen({ navigation }: Props) {
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       {ComponentsList.map((item) => (
         <HomeMenuCard
           {...item}
@@ -18,7 +19,7 @@ function HomeScreen({ navigation }: Props) {
           onPress={() => navigation.navigate(item.component)}
         />
       ))}
-    </View>
+    </Container>
   );
 }
 
@@ -28,6 +29,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: "white",
   },
 });
