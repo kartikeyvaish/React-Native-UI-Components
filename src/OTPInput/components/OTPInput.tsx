@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useTheme } from "@react-navigation/native";
+import React, { useRef, useState } from "react";
 import {
   Dimensions,
   NativeSyntheticEvent,
@@ -9,9 +10,7 @@ import {
   TextStyle,
   View,
   ViewStyle,
-  AppState,
 } from "react-native";
-import Clipboard from "@react-native-community/clipboard";
 
 const ScreenWidth = Dimensions.get("screen").width;
 
@@ -45,7 +44,7 @@ function OTPInput({
   activeBorderWidth = 3,
   disabledBorderWidth = 1,
   headerTitle = ``,
-  headerTitleColor = "black",
+  headerTitleColor,
   children = null,
   HeaderComponent = null,
   FooterComponent = null,
@@ -59,39 +58,7 @@ function OTPInput({
 }: Props) {
   const TextInputRefs = useRef(new Array(length).fill({}));
   const [Focused, SetFocused] = useState(0);
-  const appState = useRef(AppState.currentState);
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === "active"
-      ) {
-        CheckClipBoard();
-      }
-
-      appState.current = nextAppState;
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
-
-  // Function to check clipboard OTP
-  const CheckClipBoard = async () => {
-    try {
-      const text = await Clipboard.getString();
-      console.log(text);
-      let result = /^[0-9\b]+$/.test(text);
-      if (result) {
-        if (text.length === length) {
-          SetFocused(text.length - 1);
-          onChangeText(text);
-        }
-      }
-    } catch (error) {}
-  };
+  const { colors } = useTheme();
 
   // Function to handle text input change
   const onKeyPress = (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
@@ -127,7 +94,7 @@ function OTPInput({
 
   const headerTitleStyleObj = {
     ...styles.headerTitleStyle,
-    color: headerTitleColor,
+    color: headerTitleColor ? headerTitleColor : colors.text,
     ...headerTitleStyle,
   };
 
