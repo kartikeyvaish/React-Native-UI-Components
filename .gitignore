@@ -36,6 +36,7 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+.expo-shared/*
 
 # BUCK
 buck-out/
@@ -52,3 +53,10 @@ buck-out/
 # Expo
 .expo/
 web-build/
+
+# assets and m4a and jpg songs and files
+assets/
+*.jpg
+*.png
+*.m4a
+*.webm
