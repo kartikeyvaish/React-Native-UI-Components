@@ -59,11 +59,9 @@ function MusicPlayerScreen() {
         SetLoading(false);
       } else {
         SetLoading(false);
-        console.log(result);
         ToastAndroid.show("Error in Loading Audio", ToastAndroid.LONG);
       }
     } catch (error) {
-      console.log(error);
       ToastAndroid.show("Error in Loading Audio", ToastAndroid.LONG);
       SetLoading(false);
     }
@@ -273,9 +271,13 @@ function MusicPlayerScreen() {
 
           {GetPlayPauseButton}
 
-          <View style={{ margin: 20 }}>
-            <Entypo name="music" size={40} color="white" onPress={SelectFile} />
-          </View>
+          <Entypo
+            name="music"
+            size={40}
+            color="white"
+            onPress={SelectFile}
+            style={{ margin: 20 }}
+          />
         </View>
       </View>
     </>
