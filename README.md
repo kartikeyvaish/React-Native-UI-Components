@@ -15,3 +15,10 @@ This is a reusable component for OTP Input fields. You can provide `count` of fi
 ### 2. [Music Player](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/MusicPlayer)
 
 This is a component for music player in react-native
+
+### 3. [Image Viewer](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/ImageViewer)
+
+A component for displaying multiple files and enabling multiple file `selection`. Completely generalized and customizable.
+
+- [Usage](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/ImageViewer#usage)
+- [Docs](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/ImageViewer#parameters)
