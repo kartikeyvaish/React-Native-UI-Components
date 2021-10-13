@@ -56,7 +56,3 @@ web-build/
 
 # assets and m4a and jpg songs and files
 assets/
-*.jpg
-*.png
-*.m4a
-*.webm
