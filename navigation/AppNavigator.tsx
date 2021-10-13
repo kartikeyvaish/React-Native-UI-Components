@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "../src/Home/HomeScreen";
+import ImageViewerScreen from "../src/ImageViewer/screens/ImageViewerScreen";
 import OTP_Input_Screen from "../src/OTPInput/screen/OTP_Input_Screen";
 import MusicPlayerScreen from "../src/MusicPlayer/screens/MusicPlayerScreen";
 
@@ -23,6 +24,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name="Music_Player_Screen"
         component={MusicPlayerScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Image_Viewer_Screen"
+        component={ImageViewerScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
