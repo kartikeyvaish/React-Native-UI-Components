@@ -6,6 +6,10 @@ import {
   ActivityIndicator,
   ToastAndroid,
   StatusBar,
+  Modal,
+  FlatList,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { Audio } from "expo-av";
@@ -27,6 +31,7 @@ function MusicPlayerScreen() {
   const [Loading, SetLoading] = useState(true);
   const [Duration, SetDuration] = useState(0);
   const sound = useRef(new Audio.Sound());
+  const [modalVisible, setModalVisible] = useState(false);
 
   // useEffects
   // Load Audio and cleanup
@@ -173,6 +178,25 @@ function MusicPlayerScreen() {
     }
   };
 
+  // Callback to play a song with id
+  const PlayWithID = async (id: number) => {
+    try {
+      const index = Tracks.findIndex((track: any) => track.id === id);
+      if (index !== -1) {
+        sound.current.unloadAsync();
+        SetProgress(0);
+
+        SetFile(Tracks[index]);
+        setModalVisible(false);
+      }
+    } catch (error) {
+      setModalVisible(false);
+    }
+  };
+
+  // callback for Opening Modal
+  const ToggleModal = () => setModalVisible(!modalVisible);
+
   // useMemos
   // useMemo for ALbum Art
   const GetAlbumArt = React.useMemo(
@@ -253,6 +277,43 @@ function MusicPlayerScreen() {
     [Playing, Loading, Progress]
   );
 
+  // Render Modal
+  const RenderModal = () => (
+    <Modal
+      animationType="slide"
+      visible={modalVisible}
+      onRequestClose={() => setModalVisible(!modalVisible)}
+    >
+      <View style={styles.ModalContainer}>
+        <Text style={styles.ModalHeader}>
+          List of Songs currently in the App. Click on a song to play it.
+        </Text>
+        <FlatList
+          data={Tracks}
+          renderItem={RenderPLaylistItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
+    </Modal>
+  );
+
+  // Render for Item in playlist
+  const RenderPLaylistItem = ({ item }: any) => (
+    <TouchableOpacity
+      style={styles.ModalInnerContainer}
+      onPress={() => PlayWithID(item.id)}
+    >
+      <Image source={{ uri: item.albumArt }} style={styles.PlaylistImage} />
+
+      <View style={styles.PlaylistDetails}>
+        <Text style={{ color: "white", fontSize: 20 }}>
+          {helper.RemoveExtension(item.title)}
+        </Text>
+        <Text style={{ color: "white", fontSize: 15 }}>{item.artist}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
   return (
     <>
       <StatusBar
@@ -271,15 +332,14 @@ function MusicPlayerScreen() {
 
           {GetPlayPauseButton}
 
-          <Entypo
-            name="music"
-            size={40}
-            color="white"
-            onPress={SelectFile}
-            style={{ margin: 20 }}
-          />
+          <View style={styles.BTNContainer}>
+            <Entypo name="music" size={35} color="white" onPress={SelectFile} />
+            <Entypo name="list" size={35} color="white" onPress={ToggleModal} />
+          </View>
         </View>
       </View>
+
+      {RenderModal()}
     </>
   );
 }
@@ -319,4 +379,41 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  BTNContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 20,
+  },
+  ModalContainer: {
+    flex: 1,
+    backgroundColor: "#212121",
+  },
+  ModalInnerContainer: {
+    margin: 20,
+    backgroundColor: "#212121",
+    flexDirection: "row",
+    padding: 10,
+    marginBottom: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  ModalHeader: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    margin: 20,
+    marginBottom: 0,
+  },
+  PlaylistImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 100,
+  },
+  PlaylistDetails: { flex: 1, marginLeft: 20, justifyContent: "center" },
 });
