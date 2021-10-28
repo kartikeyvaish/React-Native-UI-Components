@@ -1,6 +1,6 @@
 # React-Native-UI-Components
 
-![[object Object]](https://socialify.git.ci/kartikeyvaish/React-Native-UI-Components/image?description=1&forks=1&issues=1&language=1&name=1&owner=1&pulls=1&stargazers=1&theme=Light)
+![[object Object]](https://socialify.git.ci/kartikeyvaish/React-Native-UI-Components/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2Fkartikeyvaish%2FReact-Native-UI-Components%2Fmain%2Fandroid%2Fapp%2Fsrc%2Fmain%2Fres%2Fmipmap-xxxhdpi%2Fic_launcher_round.png&name=1&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Dark)
 
 ## Components in this Repository :
 
