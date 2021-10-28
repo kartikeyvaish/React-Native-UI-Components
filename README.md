@@ -1,6 +1,6 @@
 # React-Native-UI-Components
 
-A repo for Re-usable components for React Native.
+![[object Object]](https://socialify.git.ci/kartikeyvaish/React-Native-UI-Components/image?description=1&forks=1&issues=1&language=1&name=1&owner=1&pulls=1&stargazers=1&theme=Light)
 
 ## Components in this Repository :
 
