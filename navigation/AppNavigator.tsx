@@ -1,12 +1,15 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 
+import DetailsScreen from "../src/SharedTransition/screens/DetailsScreen";
 import HomeScreen from "../src/Home/HomeScreen";
 import ImageViewerScreen from "../src/ImageViewer/screens/ImageViewerScreen";
-import OTP_Input_Screen from "../src/OTPInput/screen/OTP_Input_Screen";
+import ListScreen from "../src/SharedTransition/screens/ListScreen";
 import MusicPlayerScreen from "../src/MusicPlayer/screens/MusicPlayerScreen";
+import OTP_Input_Screen from "../src/OTPInput/screen/OTP_Input_Screen";
 
-const Stack = createStackNavigator();
+const Stack = createSharedElementStackNavigator();
 
 export default function AppNavigator() {
   return (
@@ -30,6 +33,30 @@ export default function AppNavigator() {
         name="Image_Viewer_Screen"
         component={ImageViewerScreen}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ListScreen"
+        component={ListScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="DetailsScreen"
+        component={DetailsScreen}
+        options={{ headerShown: false }}
+        sharedElements={(route, otherRoute, showing) => {
+          const { item } = route.params;
+          return [
+            {
+              id: `item.${item.id}.photo`,
+              animation: "fade",
+            },
+            {
+              id: `item.${item.id}.description`,
+              animation: "move",
+            },
+          ];
+          // return [`item.${item.id}.photo`, `item.${item.id}.description`];
+        }}
       />
     </Stack.Navigator>
   );

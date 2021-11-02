@@ -14,6 +14,11 @@ const ComponentsList = [
     _id: "3",
     component: "Image_Viewer_Screen",
   },
+  {
+    name: "4.) Shared Element",
+    _id: "4",
+    component: "ListScreen",
+  },
 ];
 
 export default ComponentsList;
