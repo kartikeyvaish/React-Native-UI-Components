@@ -22,3 +22,9 @@ A component for displaying multiple files and enabling multiple file `selection`
 
 - [Usage](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/ImageViewer#usage)
 - [Docs](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/ImageViewer#parameters)
+
+### 4. [Shared Element](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/SharedTransition)
+
+Component which shows example for using shared element using react navigation.
+
+- [Usage](https://github.com/kartikeyvaish/React-Native-UI-Components/tree/main/src/SharedTransition/screens)
