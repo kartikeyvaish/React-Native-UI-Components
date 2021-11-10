@@ -19,6 +19,11 @@ const ComponentsList = [
     _id: "4",
     component: "ListScreen",
   },
+  {
+    name: "5.) Instagram Reels",
+    _id: "5",
+    component: "Reels",
+  },
 ];
 
 export default ComponentsList;
